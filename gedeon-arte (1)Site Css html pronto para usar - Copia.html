@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gedeon Arte — Artesanato de Povo Originário · Ilhéus, Bahia,Brasil</title>
+<meta name="authour" content="Gedeonarte">
+<meta name="keyword" content="para ongs">
+<meta name="description" content="Artesanato artesanal feito à mão com palha, cipó e bambu. Cestos, luminárias e vasos únicos criados por Gedeon, mestre artesão dos povos originários de Ilhéus, Bahia." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="external stylesheet" href="https://github.com/gurinatan-ai/Gedeonarte.git">
+<style>
+  
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --terra:    #7A4F2D;
+    --terra2:   #5C3519;
+    --areia:    #C4986A;
+    --palha:    #E8D5A8;
+    --offwhite: #F6F0E6;
+    --escuro:   #1E1009;
+    --medio:    #4A2C10;
+    --cinza:    #8C7A68;
+    --borda:    rgba(196,152,106,0.25);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--offwhite);
+    color: var(--escuro);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 40px;
+    background: rgba(30,16,9,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--borda);
+    transition: padding 0.3s;
+  }
+  nav.scrolled { padding: 14px 48px; }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400; letter-spacing: 4px;
+    color: var(--palha); text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-size: 11px; letter-spacing: 2px; color: var(--areia);
+    text-decoration: none; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--palha); }
+  .nav-cta {
+    font-size: 11px; letter-spacing: 2px; color: var(--escuro);
+    background: var(--areia); text-decoration: none;
+    padding: 9px 20px; border-radius: 2px;
+    text-transform: uppercase; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--palha); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--escuro);
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 48px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(122,79,45,0.25) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(92,53,25,0.3) 0%, transparent 60%);
+  }
+  .hero-pattern {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image:
+      repeating-linear-gradient(0deg, var(--areia) 0px, var(--areia) 1px, transparent 1px, transparent 24px),
+      repeating-linear-gradient(90deg, var(--areia) 0px, var(--areia) 1px, transparent 1px, transparent 24px);
+  }
+  .hero-tag {
+    font-size: 11px; letter-spacing: 3px; color: var(--areia);
+    text-transform: uppercase; margin-bottom: 24px;
+    position: relative; z-index: 1;
+  }
+  .hero-tag::before {
+    content: ''; display: inline-block;
+    width: 32px; height: 1px; background: var(--areia);
+    margin-right: 12px; vertical-align: middle;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 5vw, 80px);
+    font-weight: 280; line-height: 1.1;
+    color: var(--palha); margin-bottom: 28px;
+    position: relative; z-index: 1;
+  }
+  .hero h1 em { font-style: italic; color: var(--areia); }
+  .hero-sub {
+    font-size: 12px; color: var(--cinza); max-width: 520px;
+    line-height: 1.85; margin-bottom: 30px;
+    position: relative; z-index: 1;
+  }
+  .hero-btns { display: flex; gap: 16px; position: relative; z-index: 1; flex-wrap: wrap; }
+  .btn-gold {
+    padding: 14px 32px; background: var(--terra);
+    color: var(--palha); border: none; border-radius: 2px;
+    font-family: 'Jost', sans-serif; font-size: 12px;
+    letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer; text-decoration: none; display: inline-block;
+    transition: background 0.2s;
+  }
+  .btn-gold:hover { background: var(--areia); color: var(--escuro); }
+  .btn-ghost {
+    padding: 14px 32px; background: transparent;
+    color: var(--palha); border: 1px solid var(--borda);
+    border-radius: 2px; font-family: 'Jost', sans-serif;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer; text-decoration: none; display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--areia); color: var(--areia); }
+  .hero-scroll {
+    position: absolute; bottom: 32px; right: 48px;
+    font-size: 10px; letter-spacing: 2px; color: var(--cinza);
+    text-transform: uppercase; writing-mode: vertical-rl;
+    display: flex; align-items: center; gap: 12px;
+    z-index: 1;
+  }
+  .hero-scroll::after {
+    content: ''; width: 1px; height: 48px;
+    background: var(--areia); animation: scrollLine 2s ease-in-out infinite;
+  }
+  @keyframes scrollLine { 0%,100%{opacity:0.3;transform:scaleY(0.5);} 50%{opacity:1;transform:scaleY(1);} }
+
+  /* ── DIVISOR ── */
+  .divisor {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--areia) 30%, var(--terra) 50%, var(--areia) 70%, transparent);
+  }
+
+  /* ── SEÇÕES ── */
+  .section { padding: 80px 48px; }
+  .section-alt { background: #EDE3D0; }
+  .section-dark { background: var(--escuro); }
+  .section-label {
+    font-size: 10px; letter-spacing: 4px; color: var(--terra);
+    text-transform: uppercase; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::after { content: ''; flex: 0 0 24px; height: 1px; background: var(--areia); }
+  .section-dark .section-label { color: var(--areia); }
+  .section-dark .section-label::after { background: var(--terra); }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 300; line-height: 1.2;
+    margin-bottom: 40px; color: var(--escuro);
+  }
+  .section-dark .section-title { color: var(--palha); }
+
+  /* ── GALERIA ── */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .g-card {
+    position: relative; overflow: hidden;
+    border-radius: 4px; cursor: pointer;
+    aspect-ratio: 1;
+    background: var(--medio);
+  }
+  .g-card img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.5s ease;
+  }
+  .g-card:hover img { transform: scale(1.06); }
+  .g-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(30,16,9,0.85) 0%, transparent 50%);
+    opacity: 0; transition: opacity 0.3s;
+    display: flex; align-items: flex-end; padding: 20px;
+  }
+  .g-card:hover .g-overlay { opacity: 1; }
+  .g-label {
+    font-size: 13px; color: var(--palha);
+    letter-spacing: 0.5px; line-height: 1.4;
+  }
+  .g-card-bottom {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(30,16,9,0.8), transparent);
+    padding: 32px 16px 14px;
+  }
+  .g-card-name {
+    font-size: 12px; color: var(--palha);
+    letter-spacing: 1px;
+  }
+
+  /* ── SOBRE ── */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .about-visual {
+    position: relative;
+  }
+  .about-img-frame {
+    width: 100%; aspect-ratio: 3/4;
+    border-radius: 4px; overflow: hidden;
+    background: var(--medio);
+  }
+  .about-img-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .about-badge-box {
+    position: absolute; bottom: -20px; right: -20px;
+    background: var(--terra); color: var(--palha);
+    padding: 20px 24px; border-radius: 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; line-height: 1.6;
+  }
+  .about-badge-box strong { display: block; font-size: 22px; font-weight: 400; margin-bottom: 2px; }
+  .about-content { padding-bottom: 24px; }
+  .about-content p {
+    font-size: 15px; color: var(--medio); line-height: 1.9;
+    margin-bottom: 16px;
+  }
+  .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
+  .badge {
+    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 6px 14px; border: 1px solid var(--areia);
+    border-radius: 2px; color: var(--terra);
+  }
+
+  /* ── DEPOIMENTOS ── */
+  .depo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .depo-card {
+    background: var(--offwhite); border: 1px solid var(--borda);
+    border-radius: 4px; padding: 28px 24px;
+    border-top: 3px solid var(--areia);
+  }
+  .depo-stars { color: var(--terra); font-size: 14px; letter-spacing: 2px; margin-bottom: 16px; }
+  .depo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px; font-style: italic; color: var(--medio);
+    line-height: 1.7; margin-bottom: 20px;
+  }
+  .depo-author { font-size: 12px; font-weight: 500; color: var(--escuro); letter-spacing: 0.5px; }
+  .depo-role { font-size: 11px; color: var(--cinza); margin-top: 2px; }
+
+  /* ── FORMULÁRIO ── */
+  .form-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .form-info p {
+    font-size: 15px; color: var(--cinza); line-height: 1.9; margin-bottom: 20px;
+  }
+  .contact-items { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
+  .contact-item { display: flex; gap: 12px; align-items: center; }
+  .contact-icon {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(196,152,106,0.15); border: 1px solid var(--borda);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; flex-shrink: 0;
+  }
+  .contact-text { font-size: 13px; color: var(--cinza); }
+  .contact-text strong { display: block; font-size: 11px; letter-spacing: 1px; color: var(--areia); text-transform: uppercase; margin-bottom: 2px; }
+
+  .form-fields { display: grid; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field label { font-size: 11px; letter-spacing: 1.5px; color: var(--areia); text-transform: uppercase; }
+  .field input, .field select, .field textarea {
+    padding: 12px 16px;
+    border: 1px solid rgba(196,152,106,0.2);
+    border-radius: 2px; font-size: 14px;
+    background: rgba(255,255,255,0.04); color: var(--palha);
+    font-family: 'Jost', sans-serif;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    border-color: var(--areia);
+  }
+  .field input::placeholder, .field textarea::placeholder { color: rgba(196,152,106,0.35); }
+  .field select option { background: var(--escuro); color: var(--palha); }
+  .field textarea { resize: vertical; min-height: 100px; }
+  .submit-btn {
+    width: 100%; padding: 15px;
+    background: var(--areia); color: var(--escuro);
+    border: none; border-radius: 2px;
+    font-family: 'Jost', sans-serif; font-size: 12px;
+    font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer; transition: background 0.2s;
+    margin-top: 4px;
+  }
+  .submit-btn:hover { background: var(--palha); }
+  .success-msg {
+    display: none;
+    background: rgba(196,152,106,0.15); color: var(--palha);
+    padding: 16px; border-radius: 2px; font-size: 14px;
+    text-align: center; border: 1px solid var(--borda);
+    margin-top: 12px; line-height: 1.6;
+  }
+
+  /* ── RODAPÉ ── */
+  footer {
+    background: #100804; padding: 40px 48px;
+    display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: gap;
+    border-top: 1px solid var(--borda);
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 400; letter-spacing: 3px;
+    color: var(--palha);
+  }
+  .footer-info {
+    font-size: 12px; color: var(--cinza);
+    text-align: center; line-height: 1.8;
+  }
+  .footer-reg { font-size: 11px; color: rgba(139,94,60,0.6); text-align: right; }
+
+  /* ── ANIMAÇÕES ── */
+  .fade-up {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVO ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 0 20px 64px; }
+    .section { padding: 56px 20px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-badge-box { right: 0; }
+    .form-layout { grid-template-columns: 1fr; gap: 40px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 20px; }
+    .footer-reg { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">Gedeon Arte</div>
+  <div class="nav-links">
+    <p>Você pode acessar links externos clicando nos botões abaixo:</p>
+    <a href="https://github.com/gurinatan-ai/Gedeonarte.git" target="_blank" rel="external">Repositório no GitHub</a>
+        <nav style="display:flex; flex-wrap:wrap; gap: 10px; justify-content:center; margin: top 10px;">
+          <a href="https://github.com/gurinatan-ai/Gedeonarte.git" target="_blank" rel="external">Repositório no GitHub</a>
+            <a href="https://wa.me" class="btn" style="background:#3e2f23; color:#E8D5A8; padding: 11px; 23px; border-radius:30px; font-size: 12px;">Fale com Gedeon no WhatsApp</a>
+            <a href="https://www.instagram.com/gedeon.gomes.33" class="btn" style="background: #3e2f23;; color:#E8D5A8; padding:12px 25px; border-radius:30px; font-size: 12px;">Fale com Gedeon no Instagram</a>
+            <a href="mailto:gurinatan@gmail.com" class="btn" style="background:#3e2f23; color: #E8D5A8;; padding:12px 25px; border-radius:30px; font-size: 12px;">📧 gurinatan@gmail.com</a>
+    <a href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="externalstylesheet">Fonte Inter</a>
+     <a href="
+    <a href="#galeria">Produtos</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#depoimentos">Depoimentos</a>
+  </div>
+  <a href="#contato" class="nav-cta">Contato</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-tag">Artesanato de povo originário · Ilhéus, Bahia, Brasil</div>
+  <h1>Das mãos<br>que <em>trança</em>,<br>a palha nasce um pedaço do chão!</h1>
+  <p class="hero-sub">Cestos, luminárias e vasos únicos criados com palha, cipó e bambu. O aprendizado continuo ancestrais que atravessam gerações e chegam até você.</p>
+  <div class="hero-btns">
+    <a href="#galeria" class="btn-gold">Ver coleção</a>
+    <a href="#contato" class="btn-ghost">Fale comigo</a>
+    <a href="#contato" class="btn-ghost">Eu sou Gedeon Arte</a>
+    <a href="#contato" class="btn-ghost">Estou convidando você Ongs para serem meus parceiros para reflorestar o dendê</a>
+  </div>
+  <div class="hero-scroll">Rolar</div>
+</section>
+
+<div class="divisor"></div>
+
+<!-- GALERIA -->
+<section class="section" id="galeria">
+  <div class="section-label fade-up">Coleção</div>
+  <div class="section-title fade-up">Cada peça, conta uma história vinda do coração!</div>
+  <div class="gallery">
+    <div class="g-card fade-up">
+      <img src="12.png" alt="Cesto redondo com tampa" />
+      <div class="g-card-bottom"><div class="g-card-name">Cesto redondo com tampa</div></div>
+    </div>
+    <div class="g-card fade-up">
+      <img src="3.png" alt="Vaso coluna em bambu" />
+      <div class="g-card-bottom"><div class="g-card-name">Vaso coluna · bambu</div></div>
+    </div>
+    <div class="g-card fade-up">
+      <img src="6.png" alt="Luminária pendente" />
+      <div class="g-card-bottom"><div class="g-card-name">Luminária pendente</div></div>
+    </div>
+    <div class="g-card fade-up">
+      <img src="20190912_005854.jpg" alt="Cesto grande em palha" />
+      <div class="g-card-bottom"><div class="g-card-name">Cesto grande · palha</div></div>
+    </div>
+    <div class="g-card fade-up">
+      <img src="20190916_221405__2_.jpg" alt="Cestos com tampa" />
+      <div class="g-card-bottom"><div class="g-card-name">Cestos com tampa</div></div>
+    </div>
+    <div class="g-card fade-up">
+      <img src="20200120_080459.jpg" alt="Pendente em corrente" />
+      <div class="g-card-bottom"><div class="g-card-name">Pendente em corrente</div></div>
+    </div>
+    <div class="g-card fade-up">
+      <img src="20190912_001346.jpg" alt="Vaso oval em cipó" />
+      <div class="g-card-bottom"><div class="g-card-name">Vaso oval · cipó</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divisor"></div>
+
+<!-- SOBRE -->
+<section class="section section-alt" id="sobre">
+  <div class="about-grid">
+    <div class="about-visual fade-up">
+      <div class="about-img-frame">
+        <img src="20190912_005854.jpg" alt="Gedeon e seu artesanato" />
+      </div>
+      <div class="about-badge-box">
+        <strong>Gedeon</strong>
+        Mestre Artesão<br>Ilhéus · BA
+      </div>
+    </div>
+    <div class="about-content fade-up">
+      <div class="section-label">Sobre</div>
+      <div class="section-title">Arte que vem<br>das maos que trança a palha</div>
+      <p>Sou dos povos originários de Ilhéus,Bahia,Brasil,tenho dedicado minha vida a preservação do replantio reflorestamento da palha da costa ex: a palha do dendê,da piaçava, do cipó imbé e outros sustentável. Além disso,existe uma preocupação no aperfeiçamento da arte do trançado com palha, cipó e bambu tem sido um desafio.</p>
+      <p>Cada peça conta uma história vinda do coração! Do cipó vem a esperança da naturesa vem a cor quem ensina fazer arte da palha também ensina seu valor! Não exite obras ou trabalho pequeno quando é feito com amor cada mão que trança a palha também planta uma nova flor!</p>
+      <p>Sou artesão profissional junto com um povo simples sempre exite um novo olhar! Vem da mãe terra,vem da mãe naturesa,tem sorriso pra repartir da cultura dos povos originários do Brasil.</p>
+      <div class="badges">
+        <span class="badge">Registro SETRE</span>
+        <span class="badge">Registro SICAB</span>
+        <span class="badge">Povo originário</span>
+        <span class="badge">Ilhéus · Bahia </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divisor"></div>
+
+<!-- DEPOIMENTOS -->
+<section class="section" id="depoimentos">
+  <div class="section-label fade-up">Quem já tem</div>
+  <div class="section-title fade-up">Depoimentos</div>
+  <div class="depo-grid">
+    <div class="depo-card fade-up">
+      <div class="depo-stars">★★★★★</div>
+      <div class="depo-text">"Comprei um cesto e uma luminária. A qualidade é impressionante — peças únicas que transformaram minha sala."</div>
+      <div class="depo-author">Ana Paula M.</div>
+      <div class="depo-role">Cliente · Salvador, BA</div>
+    </div>
+    <div class="depo-card fade-up">
+      <div class="depo-stars">★★★★★</div>
+      <div class="depo-text">"Trabalhamos com Gedeon para decorar nossa pousada. Os hóspedes sempre perguntam de onde vieram as peças."</div>
+      <div class="depo-author">Carlos Henrique</div>
+      <div class="depo-role">Parceiro comercial · Ilhéus, BA</div>
+    </div>
+    <div class="depo-card fade-up">
+      <div class="depo-stars">★★★★★</div>
+      <div class="depo-text">"Arte autêntica, feita com cuidado e história. Vale cada centavo — e chega muito bem embalada."</div>
+      <div class="depo-author">Mariana L.</div>
+      <div class="depo-role">Cliente · São Paulo, SP</div>
+    </div>
+  </div>
+  <p style="font-size:12px; color:var(--cinza); margin-top:20px;">* Substitua pelos depoimentos reais dos seus clientes.</p>
+</section>
+
+<div class="divisor"></div>
+
+<!-- CONTATO -->
+<section class="section section-dark" id="contato">
+  <div class="section-label fade-up">Fale comigo Gedeon Arte</div>
+  <div class="section-title fade-up">Entre em contato pelo Whatsapp</div>
+  <div class="form-layout">
+    <div class="form-info fade-up">
+      <p>Seja você um comprador, lojista, investidor ou parceiro — estou aberto a conversar e criar juntos.</p>
+      <p>Peças sob encomenda, grandes volumes e parcerias comerciais são bem-vindos.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-text">
+            <strong>Localização</strong>
+            Ilhéus, Bahia, Brasil
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div class="contact-text">
+            <strong>WhatsApp</strong>
+            Adicione seu número aqui
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📷</div>
+          <div class="contact-text">
+            <strong>Instagram</strong>
+            Adicione seu @ aqui
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-fields fade-up">
+      <div class="form-row">
+        <div class="field">
+          <label>Nome</label>
+          <input type="text" id="f-nome" placeholder="Seu nome completo" />
+        </div>
+        <div class="field">
+          <label>E-mail</label>
+          <input type="email" id="f-email" placeholder="seu@email.com" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label>WhatsApp</label>
+          <input type="tel" id="f-wpp" placeholder="(73) 99999-9999" />
+        </div>
+        <div class="field">
+          <label>Você é...</label>
+          <select id="f-tipo">
+            <option value="">Selecione</option>
+            <option>Comprador individual</option>
+            <option>Loja / revendedor</option>
+            <option>Investidor / parceiro institucional</option>
+            <option>Imprensa / mídia</option>
+            <option>Outro</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Mensagem</label>
+        <textarea id="f-msg" placeholder="Como posso te ajudar? Peças sob encomenda, parcerias..."></textarea>
+      </div>
+      <button class="submit-btn" onclick="submitForm()">Enviar mensagem</button>
+      <div class="success-msg" id="success-msg">
+        Mensagem recebida! Gedeon entrará em contato em breve.<br>Obrigado pelo interesse!
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer>
+  <div class="footer-logo">Gedeon Arte</div>
+  <div class="footer-info">
+    Artesanato de povo originário · Ilhéus, Bahia, Brasil<br>
+    © 2025 Gedeon Arte — Todos os direitos reservados
+  </div>
+  <div class="footer-reg">
+    Registro SETRE<br>
+    Registro SICAB
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Fade-up ao scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Formulário
+function submitForm() {
+  const nome = document.getElementById('f-nome').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  if (!nome || !email) { alert('Por favor, preencha nome e e-mail.'); return; }
+  const btn = document.querySelector('.submit-btn');
+  btn.disabled = true; btn.style.opacity = '0.5';
+  document.getElementById('success-msg').style.display = 'block';
+}
+</script>
+</body>
+</html>
